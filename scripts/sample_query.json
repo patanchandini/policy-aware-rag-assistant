@@ -1,0 +1,9 @@
+{
+  "query": "What is the refund window?",
+  "user_context": {
+    "user_id": "u-001",
+    "access_levels": ["public"],
+    "authorized_products": ["CloudBackup"],
+    "authorized_regions": ["US"]
+  }
+}
