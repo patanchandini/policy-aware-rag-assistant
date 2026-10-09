@@ -1,12 +1,12 @@
 """Detect semantic conflicts across retrieved chunks (same product/region)."""
 from collections import defaultdict
 from typing import List, Dict
-from openai import OpenAI
+from google import genai
 from src.models.schemas import Chunk
 from config.settings import get_settings
 
 settings = get_settings()
-client = OpenAI(api_key=settings.openai_api_key)
+client = genai.Client(api_key=settings.gemini_api_key)
 
 
 def _scope_key(chunk: Chunk) -> str:
@@ -35,13 +35,13 @@ Answer:"""
 
 
 def are_contradictory(a: str, b: str) -> bool:
-    resp = client.chat.completions.create(
-        model=settings.llm_model,
-        messages=[{"role": "user", "content": CONTRADICTION_PROMPT.format(a=a, b=b)}],
-        temperature=0,
-        max_tokens=3,
+    prompt = CONTRADICTION_PROMPT.format(a=a, b=b)
+    response = client.models.generate_content(
+        model=settings.gemini_llm_model,
+        contents=prompt,
     )
-    return resp.choices[0].message.content.strip().upper().startswith("YES")
+    text = response.text.strip().upper()
+    return text.startswith("YES")
 
 
 def detect_conflicts(chunks: List[Chunk]) -> List[List[Chunk]]:
@@ -50,7 +50,6 @@ def detect_conflicts(chunks: List[Chunk]) -> List[List[Chunk]]:
     for scope, group in group_by_scope(chunks).items():
         if len(group) < 2:
             continue
-        # Compare pairwise (small groups → OK)
         conflicting = []
         for i in range(len(group)):
             for j in range(i + 1, len(group)):
