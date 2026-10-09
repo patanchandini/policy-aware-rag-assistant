@@ -1,0 +1,10 @@
+-r requirements.txt
+
+# Evaluation (slow to install, not needed in production)
+ragas==0.1.9
+datasets==2.19.1
+
+# Testing
+pytest==8.3.0
+sentence-transformers==2.7.0
+rank-bm25==0.2.2
