@@ -1,9 +1,21 @@
 # Policy-Aware RAG Knowledge Assistant
 
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-onrender.com-blue?style=for-the-badge)](https://policy-aware-rag-assistant.onrender.com/)
+[![API Docs](https://img.shields.io/badge/API%20Docs-Swagger-green?style=for-the-badge)](https://policy-aware-rag-assistant.onrender.com/docs)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/patanchandini/policy-aware-rag-assistant)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+
 A production-grade Retrieval-Augmented Generation (RAG) system that answers
 questions using product documents, FAQs, policies, and troubleshooting guides —
 with **metadata-aware retrieval**, **temporal filtering**, **access control**,
 **conflict resolution**, **mandatory citations**, and **prompt-injection defense**.
+
+
+**🔗 Live Demo:** [https://policy-aware-rag-assistant.onrender.com](https://policy-aware-rag-assistant.onrender.com/)
+**📚 API Docs:** [https://policy-aware-rag-assistant.onrender.com/docs](https://policy-aware-rag-assistant.onrender.com/docs)
+
 
 Built with FastAPI + PostgreSQL/pgvector + Google Gemini (free tier).
 
